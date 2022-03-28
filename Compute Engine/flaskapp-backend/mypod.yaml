@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+    name: mypod
+    labels:
+      app: backend-modified
+spec:
+    containers:
+        - name: myapp
+          image: gcr.io/tatvic-gcp-dev-team/jaygiri12345/cl2@sha256:fe15fa4aeee19c6b926047ec053a769fa77df2a3be5dcf4ebb8e622213949742
+          env:
+          - name: PROJECT_ID
+            valueFrom:
+              secretKeyRef:
+                name: secret-backend
+                key: project_id
+          - name: DS_TABLE
+            valueFrom:
+              secretKeyRef:
+                name: secret-backend
+                key: ds_table
+          - name: SERVICE_KEY
+            valueFrom:
+              secretKeyRef:
+                name: secret-backend
+                key: service_key
+          - name: F_URL
+            valueFrom:
+              secretKeyRef:
+                name: secret-backend
+                key: f_url                 
